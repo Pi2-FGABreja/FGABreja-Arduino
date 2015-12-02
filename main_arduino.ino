@@ -9,31 +9,31 @@ void setup() {
 }
 
 /*PRE BRASSAGEM*/
-void encheagua() {
-  
-  if (Serial.available() > 0) {  
+void insert_water() {
+
+  if (Serial.available() > 0) {
    String opcao = Serial.readStringUntil(':');
   }
 
   if (opcao == "insert_water") {
   }
 }
-  
-    
 
-void ligamotor() {
-  if (Serial.available() > 0) {  
+
+
+void turn_on_engine() {
+  if (Serial.available() > 0) {
    String opcao = Serial.readStringUntil(':');
   }
 
   if (opcao == "turn_off_engine") {
   }
-  
+
   }
 
 /*BRASSAGEM*/
-void ligares1(float temperatura) {
-  if (Serial.available() > 0) {  
+void turn_on_resistor_1(float temperatura) {
+  if (Serial.available() > 0) {
    String opcao = Serial.readStringUntil(':');
   }
   if(opcao == "read_thermal_sensor") {}
@@ -41,15 +41,15 @@ void ligares1(float temperatura) {
   }
   }
 
-void alarme() {
-  
+void activate_alarm() {
+
 }
 
 /*FERVURA*/
-void fervura(){
+void turn_on_resistor_2(){
 
   /*ADICIONAR LUPULO*/
-  if (Serial.available() > 0) {  
+  if (Serial.available() > 0) {
    String opcao = Serial.readStringUntil(':');
   }
 
@@ -62,59 +62,58 @@ void fervura(){
 
 /*RESFRIAMENTO*/
 
-void ligachiller() {
-  if (Serial.available() > 0) {  
+void turn_on_chiller() {
+  if (Serial.available() > 0) {
    String opcao = Serial.readStringUntil(':');
   }
 
   if (opcao == "turn_off_chiller") {
   }
-  
+
 }
 
 /*FERMENTAÇÃO*/
 
-void ligageladeira() {
-
+void turn_on_freezer() {
   if(opcao == "read_thermal_sensor") {}
-  
+
 }
 
 
 
 void loop() {
-  if (Serial.available() > 0) {  
-   String opcao = Serial.readStringUntil(':');
+  if (Serial.available() > 0) {
+   opcao = Serial.readStringUntil(':');
   }
 
   if (opcao == "insert_water") {
-    encheagua();
+    insert_water();
   }
 
  if (opcao == "turn_on_engine") {
-    ligamotor();
+    turn_on_engine();
   }
 
   if (opcao == "turn_on_resistor_1") {
     float temperatura = Serial.parseFloat();
-    ligares1(temperatura);
+    turn_on_resistor_1(temperatura);
   }
 
   if (opcao == "activate_alarm") {
-    alarme();
+    activate_alarm();
   }
 
 
-  if (opcao == "resistance2") {
-    fervura();
+  if (opcao == "turn_on_resistor_2") {
+    turn_on_resistor_2();
   }
 
   if (opcao == "turn_on_chiller") {
-    ligachiller();
+    turn_on_chiller();
   }
 
   if (opcao == "turn_on_freezer") {
-    ligageladeira();
+    turn_on_freezer();
   }
 
 }
